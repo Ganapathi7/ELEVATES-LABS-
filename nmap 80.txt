@@ -1,0 +1,33 @@
+Starting Nmap 7.97 ( https://nmap.org ) at 2025-08-04 17:29 +0530
+Nmap scan report for reliance.reliance (192.168.29.1)
+Host is up (0.013s latency).
+
+PORT   STATE SERVICE
+80/tcp open  http
+|_http-vuln-cve2014-3704: ERROR: Script execution failed (use -d to debug)
+|_http-dombased-xss: Couldn't find any DOM based XSS.
+|_http-stored-xss: Couldn't find any stored XSS vulnerabilities.
+| http-enum: 
+|   /.nsf/../winnt/win.ini: Lotus Domino
+|   /cwhp/auditLog.do?file=..\..\..\..\..\..\..\boot.ini: Possible CiscoWorks (CuOM 8.0 and 8.5) Directory traversal (CVE-2011-0966) (Windows)
+|   /cwhp/auditLog.do?file=..\..\..\..\..\..\..\Program%20Files\CSCOpx\MDC\Tomcat\webapps\triveni\WEB-INF\classes\schedule.properties: Possible CiscoWorks (CuOM 8.0 and 8.5) Directory traversal (CVE-2011-0966) (Windows)
+|   /cwhp/auditLog.do?file=..\..\..\..\..\..\..\Program%20Files\CSCOpx\lib\classpath\com\cisco\nm\cmf\dbservice2\DBServer.properties: Possible CiscoWorks (CuOM 8.0 and 8.5) Directory traversal (CVE-2011-0966) (Windows)
+|   /cwhp/auditLog.do?file=..\..\..\..\..\..\..\Program%20Files\CSCOpx\log\dbpwdChange.log: Possible CiscoWorks (CuOM 8.0 and 8.5) Directory traversal (CVE-2011-0966) (Windows)
+|   ..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2f/var/mobile/Library/AddressBook/AddressBook.sqlitedb: Possible iPhone/iPod/iPad generic file sharing app Directory Traversal (iOS)
+|   /CuteSoft_Client/CuteEditor/Load.ashx?type=image&file=../../../web.config: Cute Editor ASP.NET Remote File Disclosure ( CVE 2009-4665 )
+|   /plugins/PluginController.php?path=..%2f..%2f..%2f..%2f..%2f..%2f..%2f..%2fwindows%2fwin.ini%00: OrangeHRM 2.6.3 Local File Inclusion 
+|_  /tiki-listmovies.php?movie=../../../../../../etc/passwd%001234: TikiWiki < 1.9.9 Directory Traversal Vulnerability
+| http-csrf: 
+| Spidering limited to: maxdepth=3; maxpagecount=20; withinhost=reliance.reliance
+|   Found the following possible CSRF vulnerabilities: 
+|     
+|     Path: http://reliance.reliance:80/
+|     Form id: tf1_username
+|     Form action: platform.cgi
+|     
+|     Path: http://reliance.reliance:80/platform.cgi
+|     Form id: tf1_username
+|_    Form action: platform.cgi
+MAC Address: 04:AB:08:78:31:11 (Shenzhen Skyworth Digital  Technology)
+
+Nmap done: 1 IP address (1 host up) scanned in 125.77 seconds

@@ -1,0 +1,9 @@
+Starting Nmap 7.97 ( https://nmap.org ) at 2025-08-04 17:55 +0530
+Nmap scan report for reliance.reliance (192.168.29.1)
+Host is up (0.012s latency).
+
+PORT     STATE    SERVICE
+8433/tcp filtered aws-as2
+MAC Address: 04:AB:08:78:31:11 (Shenzhen Skyworth Digital  Technology)
+
+Nmap done: 1 IP address (1 host up) scanned in 11.89 seconds
