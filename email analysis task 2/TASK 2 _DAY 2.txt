@@ -1,0 +1,94 @@
+TASK 2 | DAY 2 | date : 05-08-2035
+
+TITTLE : Analyze a phishing email sample.
+
+ 
+1. Obtain a sample phishing email
+
+Sample email :
+
+CLIENTE PRIME - banco.bradesco@atendimento.com.br
+
+email subject : 	CLIENTE PRIME - BRADESCO LIVELO: Seu cartão tem 92.990 pontos LIVELO expirando hoje!
+Sender Display:	BANCO DO BRADESCO LIVELO banco.bradesco@atendimento.com.br
+Recipient     :	phishing@pot
+Date Sent     :	Tue, 19 Sep 2023 18:35:49 +0000
+Originating IP:	137.184.34.4 (DigitalOcean server)
+Email Encoding:	Base64
+Message-ID    :	20230919183549.39DEA3F725@ubuntu-s-1vcpu-1gb-35gb-intel-sfo3-06
+
+
+2. Examine sender's email address for spoofing
+
+From: BANCO DO BRADESCO LIVELO <banco.bradesco@atendimento.com.br>
+
+Spoofed domain: atendimento.com.br is not officially tied to Bradesco Bank.
+
+Intent: Makes it look like it’s from Bradesco using deceptive branding.
+
+
+3. Check email headers for discrepancies
+
+SPF: TempError 
+
+DKIM: None
+
+DMARC: TempError
+
+IP: 137.184.34.4
+
+Tool used: MXToolbox + manual inspection.
+
+
+4. Identify suspicious links or attachments
+
+Found Malicious Link
+
+Link in email button:
+https://blog1seguimentmydomaine2bra.me/
+
+Clearly not an official Bradesco domain.
+
+Redirects to a phishing website posing as a login/reward page.
+
+
+5. Look for urgent or threatening language
+
+Example from body:
+"Seu cartão tem 92.990 pontos LIVELO expirando hoje!"
+(Your card has 92,990 Livelo points expiring today!)
+
+This is a classic urgency tactic to trick users into clicking without thinking.
+
+
+6. Note any mismatched URLs (hover to see real link)
+
+Display text: Resgatar Agora (Redeem Now)
+
+Hover reveals: https://blog1seguimentmydomaine2bra.me/
+
+Does not match branding of Bradesco or Livelo → mismatch detected.
+
+
+7. Verify presence of spelling or grammar errors
+
+
+The Portuguese is mostly accurate, but tone and flow feel automated.
+
+Slightly off formatting & overuse of bold/urgent phrasing in Brazilian Portuguese.
+
+English emails often contain spelling/grammar errors — not the case here due to localization.
+
+
+
+8. Summarize phishing traits found in the email
+
+Spoofed sender address	                Yes
+Failed SPF/DKIM/DMARC	                Yes
+Unusual sending IP (DigitalOcean)	Yes
+Fake branding (Bradesco, Livelo)        Yes
+Urgent call-to-action	                Yes
+Phishing link (misleading URL)	        Yes
+Suspicious formatting/language	       Minor
+Base64 encoding to hide HTML	        Yes
+
