@@ -1,0 +1,102 @@
+
+**Step 7 – Documented Commands / GUI Steps**
+
+
+**Firewall Rule to Block Telnet (Port 23)**
+
+**GUI Method:**
+
+1. Open **Windows Defender Firewall with Advanced Security**.
+2. Go to **Inbound Rules** → **New Rule…**.
+3. Select **Port** → **TCP** → type `23`.
+4. Choose **Block the connection**.
+5. Apply to Domain, Private, Public.
+6. Name it: `Block Telnet`.
+
+**PowerShell Method:**
+
+```powershell
+New-NetFirewallRule -Name "BlockTelnet" -DisplayName "Block Telnet" -Protocol TCP -LocalPort 23 -Action Block
+```
+
+---
+
+**Firewall Rule to Allow SSH (Port 22)**
+
+**Install OpenSSH Server:**
+
+```powershell
+Add-WindowsCapability -Online -Name OpenSSH.Server~~~~0.0.1.0
+```
+
+**Start and Enable SSH Service:**
+
+```powershell
+Start-Service sshd
+Set-Service -Name sshd -StartupType Automatic
+```
+
+**Allow Port 22 in Firewall:**
+
+```powershell
+New-NetFirewallRule -Name "AllowSSH" -DisplayName "Allow SSH" -Protocol TCP -LocalPort 22 -Action Allow
+```
+
+---
+
+**Testing Rules**
+
+**Check IP address:**
+
+```powershell
+ipconfig
+```
+
+**Test locally (if Telnet client installed):**
+
+```powershell
+telnet localhost 23   # Should fail (blocked)
+ssh localhost         # Should connect (allowed)
+```
+
+**Test remotely from another machine:**
+
+```bash
+telnet <windows_ip> 23   # Should fail
+ssh <username>@<windows_ip>  # Should connect
+```
+
+---
+
+**Removing the Telnet Block Rule**
+
+**GUI:**
+
+* In **Inbound Rules**, right-click **Block Telnet** → Delete.
+
+**PowerShell:**
+
+```powershell
+Remove-NetFirewallRule -Name "BlockTelnet"
+```
+
+---
+
+
+**Step 8 – Summary: How Firewall Filters Traffic**
+
+A firewall is like a **security guard for your network**.
+When data packets try to enter or leave your computer, the firewall checks them against **rules** you’ve set.
+These rules can decide based on:
+
+* **Direction** – inbound (coming in) or outbound (going out)
+* **Port** – network service number (e.g., 22 for SSH, 23 for Telnet)
+* **Protocol** – TCP, UDP
+* **Source/Destination IP address**
+
+In your case:
+
+* **Inbound traffic on port 23 (Telnet)** was blocked, so no one can use Telnet to connect.
+* **Inbound traffic on port 22 (SSH)** was allowed, so you (or authorized users) can connect remotely.
+
+
